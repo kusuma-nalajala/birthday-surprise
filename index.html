@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en" class="grain">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#2a0e1a" />
+  <meta name="description" content="A birthday surprise made with love for Sandhya" />
+  <title>Happy Birthday, Sandhya!</title>
+
+  <!-- Premium Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Instrument+Sans:ital,wght@0,400..700;1,400..700&display=swap"
+    rel="stylesheet" />
+
+  <!-- Tailwind play CDN for zero-setup execution -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            burgundy: '#2a0e1a',
+            wine: '#4a1830',
+            gold: '#e8b87d',
+            rose: '#d4a5a5',
+            cream: '#f5e6d3',
+            whisper: '#fff8f0',
+          }
+        }
+      }
+    }
+  </script>
+
+  <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+  <!-- Sound Toggle HUD -->
+  <button id="audio-toggle"
+    class="fixed top-6 right-6 z-50 p-3 rounded-full glass border border-gold/30 hover:scale-110 active:scale-95 transition-all outline-none muted"
+    aria-label="Toggle music">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
+      class="w-6 h-6 text-cream opacity-50">
+      <path
+        d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.063.922-2.063 2.063v4.875c0 1.141.922 2.062 2.063 2.062h1.932l4.5 4.5c.944.945 2.56.276 2.56-1.06V4.06z" />
+    </svg>
+  </button>
+
+  <!-- STAGE 1: GATE / WAX SEAL ENVELOPE -->
+  <div id="gate-screen"
+    class="fixed inset-0 z-40 flex flex-col items-center justify-center bg-burgundy px-4 transition-opacity duration-1000">
+    
+    <!-- Top-right corner gold line-art flower -->
+    <svg class="absolute top-0 right-0 w-48 h-48 text-gold/10 pointer-events-none" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="0.8">
+        <path d="M120,0 C100,15 80,10 70,30 C60,50 70,70 85,65 C100,60 105,45 95,35 M120,0 C105,25 105,50 85,65 C70,75 60,95 70,110 M120,0 C110,10 105,25 90,28 C80,30 75,45 85,55" />
+        <path d="M120,0 C115,10 110,22 100,28 M95,35 C88,28 78,35 80,45" />
+        <circle cx="85" cy="45" r="4" fill="currentColor" />
+        <path d="M120,0 Q90,30 40,30 Q20,30 15,50" />
+        <path d="M40,30 Q50,15 65,18" />
+        <path d="M80,65 Q60,85 65,110" />
+    </svg>
+    <!-- Bottom-left corner gold line-art flower -->
+    <svg class="absolute bottom-0 left-0 w-48 h-48 text-gold/10 pointer-events-none transform rotate-180" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="0.8">
+        <path d="M120,0 C100,15 80,10 70,30 C60,50 70,70 85,65 C100,60 105,45 95,35 M120,0 C105,25 105,50 85,65 C70,75 60,95 70,110 M120,0 C110,10 105,25 90,28 C80,30 75,45 85,55" />
+        <path d="M120,0 C115,10 110,22 100,28 M95,35 C88,28 78,35 80,45" />
+        <circle cx="85" cy="45" r="4" fill="currentColor" />
+        <path d="M120,0 Q90,30 40,30 Q20,30 15,50" />
+        <path d="M40,30 Q50,15 65,18" />
+        <path d="M80,65 Q60,85 65,110" />
+    </svg>
+
+    <div class="max-w-md w-full text-center space-y-12">
+      <h1 class="font-display text-4xl md:text-5xl text-gold shimmer font-light tracking-wide">For Sandhya</h1>
+
+      <!-- Floating Envelope -->
+      <div
+        class="relative mx-auto w-64 h-48 bg-wine rounded-lg shadow-2xl border border-gold/20 flex items-center justify-center transition-transform hover:-translate-y-2 duration-500 cursor-pointer"
+        id="open-gate-btn">
+        <!-- Folding back flap -->
+        <div
+          class="absolute top-0 left-0 right-0 h-0 border-t-[80px] border-t-wine/80 border-x-[128px] border-x-transparent transform origin-top z-10">
+        </div>
+        <!-- Envelope Body Content -->
+        <div class="z-20 text-center space-y-2">
+          <!-- Wax Seal -->
+          <div
+            class="w-16 h-16 rounded-full bg-gold hover:bg-gold/90 shadow-lg mx-auto flex items-center justify-center border-2 border-wine soft-pulse transition-transform hover:scale-110 active:scale-95">
+            <span class="text-3xl text-wine font-hand select-none font-bold">S</span>
+          </div>
+          <span class="block text-xs uppercase tracking-widest text-rose shimmer mt-3">Click to Break Seal</span>
+        </div>
+      </div>
+
+      <p class="font-display text-sm tracking-wider text-rose/70 italic">A small private surprise crafted just for
+        you...</p>
+    </div>
+  </div>
+
+  <!-- STAGE 2: CINEMATIC SLIDESHOW SCREEN (VIRTUAL VIDEO) -->
+  <div id="video-screen"
+    class="hidden fixed inset-0 z-30 bg-black flex flex-col items-center justify-center transition-opacity duration-800">
+    <!-- Progress Bar at the top -->
+    <div class="absolute top-0 left-0 right-0 h-1 bg-wine/30">
+      <div id="slide-progress-bar" class="h-full bg-gold w-0"></div>
+    </div>
+
+    <!-- Slides Viewport -->
+    <div class="relative w-full h-[70vh] flex items-center justify-center overflow-hidden">
+      <!-- Slide 1 -->
+      <div
+        class="slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out flex flex-col items-center justify-center px-6 text-center"
+        style="background: linear-gradient(135deg, #2a0e1a 0%, #4a1830 50%, #e8b87d 100%);">
+        <div class="absolute inset-0 bg-cover bg-center ken-burns opacity-65"
+          style="background-image: url('assets/sunset.png');"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+        <div class="relative z-10 max-w-2xl space-y-6 mt-32">
+          <p class="font-display text-2xl md:text-4xl text-whisper leading-relaxed font-light">"Every single moment
+            spent with you..."</p>
+        </div>
+      </div>
+
+      <!-- Slide 2 -->
+      <div
+        class="slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out flex flex-col items-center justify-center px-6 text-center"
+        style="background: linear-gradient(135deg, #10040a 0%, #200511 50%, #4a1830 100%);">
+        <div class="absolute inset-0 bg-cover bg-center ken-burns opacity-65"
+          style="background-image: url('assets/cozy.png');"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+        <div class="relative z-10 max-w-2xl space-y-6 mt-32">
+          <p class="font-display text-2xl md:text-4xl text-whisper leading-relaxed font-light">"...feels like a
+            beautiful endless dream."</p>
+        </div>
+      </div>
+
+      <!-- Slide 3 -->
+      <div
+        class="slide absolute inset-0 opacity-0 transition-opacity duration-1000 ease-in-out flex flex-col items-center justify-center px-6 text-center"
+        style="background: linear-gradient(135deg, #2a0e1a 0%, #4a1830 50%, #c8934a 100%);">
+        <div class="absolute inset-0 bg-cover bg-center ken-burns opacity-65"
+          style="background-image: url('assets/candle.png');"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent"></div>
+        <div class="relative z-10 max-w-2xl space-y-6 mt-32">
+          <p class="font-display text-2xl md:text-4xl text-whisper leading-relaxed font-light">"Today, I want to
+            celebrate the most incredible person in my world."</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cinematic Controls HUD -->
+    <div class="absolute bottom-16 flex items-center justify-between w-full max-w-md px-8 z-30">
+      <button id="prev-slide" class="text-rose/70 hover:text-gold transition-colors p-2" aria-label="Previous">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+          <path
+            d="M9.19 20.41a1.25 1.25 0 11-1.77 1.77l-8.94-8.94a1.25 1.25 0 010-1.77L9.42 2.53a1.25 1.25 0 111.77 1.77L3.01 12.5h19.74a1.25 1.25 0 110 2.5H3.01l8.4 8.41a1.25 1.25 0 011.78 1.77z" />
+        </svg>
+      </button>
+
+      <button id="play-pause-slide"
+        class="w-14 h-14 rounded-full bg-gold text-wine flex items-center justify-center shadow-lg hover:scale-105 transition-transform"
+        aria-label="Play or Pause">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+          <path fill-rule="evenodd"
+            d="M6.75 5.25a.75.75 0 01.75-.75H9a.75.75 0 01.75.75v13.5a.75.75 0 01-.75.75H7.5a.75.75 0 01-.75-.75V5.25zm7.5 0A.75.75 0 0115 4.5h1.5a.75.75 0 01.75.75v13.5a.75.75 0 01-.75.75H15a.75.75 0 01-.75-.75V5.25z"
+            clip-rule="evenodd" />
+        </svg>
+      </button>
+
+      <button id="next-slide" class="text-rose/70 hover:text-gold transition-colors p-2" aria-label="Next">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+          <path
+            d="M14.81 20.41a1.25 1.25 0 101.77 1.77l8.94-8.94a1.25 1.25 0 000-1.77L16.58 2.53a1.25 1.25 0 10-1.77 1.77l8.18 8.2H3.25a1.25 1.25 0 100 2.5h19.74l-8.18 8.41z" />
+        </svg>
+      </button>
+    </div>
+
+    <button id="skip-slideshow"
+      class="absolute bottom-6 right-6 text-xs text-rose/50 hover:text-gold uppercase tracking-widest transition-colors">
+      Skip Intro
+    </button>
+  </div>
+
+  <!-- STAGE 3: THE BIRTHDAY WISH & CELEBRATION -->
+  <div id="wish-screen" class="hidden min-h-screen py-16 px-4 bg-burgundy overflow-y-auto">
+    <div class="max-w-2xl mx-auto flex flex-col items-center">
+
+      <!-- Birthday wishes candle banner -->
+      <div class="text-center space-y-6">
+        <span class="text-xs uppercase tracking-widest text-gold font-body">July 4nd is Special</span>
+        <h2 id="wish-headline" class="font-display text-4xl md:text-5xl text-whisper tracking-wide font-light">Make a
+          Wish & Blow the Candle</h2>
+        <p class="font-body text-rose/70 max-w-md mx-auto text-sm">Click the flickering golden flame on the cake to blow
+          it out.</p>
+      </div>
+
+      <!-- CSS Layered Cake / Candle Stage -->
+      <div id="cake-screen" class="my-16 relative w-64 h-64 flex flex-col items-center justify-end">
+        <!-- Smoke Particles on blowout -->
+        <div id="smoke-container" class="absolute top-10 left-1/2 -translate-x-1/2 w-4 h-16 pointer-events-none">
+          <div class="smoke-puff puff-1"></div>
+          <div class="smoke-puff puff-2"></div>
+        </div>
+
+        <!-- Flickering Candle Flame -->
+        <div id="candle-flame"
+          class="absolute top-[48px] left-1/2 w-5 h-8 bg-gradient-to-t from-gold via-red-500 to-yellow-200 rounded-full cursor-pointer flame z-20 shadow-[0_0_20px_#c8934a]">
+        </div>
+
+        <!-- Candle Wick and Candle Stick -->
+        <div class="absolute top-[74px] left-1/2 -translate-x-1/2 w-1 h-3 bg-wine rounded z-10"></div>
+        <div
+          class="absolute top-[84px] left-1/2 -translate-x-1/2 w-3.5 h-14 bg-gradient-to-r from-gold via-cream to-gold rounded-full border border-wine z-10 shadow-lg">
+        </div>
+
+        <!-- Layered Cake Base -->
+        <!-- Top Tier -->
+        <div
+          class="relative w-36 h-10 bg-gradient-to-r from-wine via-[#732249] to-wine rounded-full border border-gold/15 flex items-center justify-center shadow-lg z-[8]">
+          <div class="w-full h-2 bg-[#d4a5a5]/30 rounded-full mt-1 border-t border-gold/10"></div>
+        </div>
+        <!-- Middle Tier -->
+        <div
+          class="relative w-48 h-12 bg-gradient-to-r from-[#200511] via-wine to-[#200511] rounded-full border border-gold/15 flex items-center justify-center shadow-lg -mt-4 z-[7]">
+          <div class="w-full h-2 bg-[#d4a5a5]/20 rounded-full mt-1 border-t border-gold/10"></div>
+        </div>
+        <!-- Bottom Tier -->
+        <div
+          class="relative w-60 h-14 bg-gradient-to-r from-[#17030c] via-[#2d091a] to-[#17030c] rounded-full border border-gold/20 flex items-center justify-center shadow-xl -mt-5 z-[6]">
+          <!-- Gold Frosting Accents -->
+          <div class="absolute bottom-2 left-0 right-0 h-1.5 bg-gradient-to-r from-gold/40 via-gold/80 to-gold/40">
+          </div>
+        </div>
+        <!-- Silver Platter -->
+        <div
+          class="relative w-64 h-5 bg-gradient-to-r from-whisper/40 to-whisper/20 border border-whisper/20 rounded-full shadow-2xl -mt-3 z-[5]">
+        </div>
+      </div>
+
+      <!-- Secret Letter Interactive Container -->
+      <div id="secret-letter-button-container" class="hidden text-center mt-6">
+        <button id="open-letter-btn"
+          class="px-8 py-4 bg-gold hover:bg-gold/90 text-wine rounded-full font-display text-lg tracking-wider font-semibold shadow-2xl hover:scale-105 active:scale-95 transition-transform soft-pulse">
+          Open Your Secret Letter
+        </button>
+      </div>
+
+      <!-- STAGE 4: PARCHMENT LOVE LETTER -->
+      <div id="letter-paper"
+        class="w-full max-w-xl glass rounded-2xl relative overflow-hidden p-8 md:p-12 shadow-2xl border border-gold/25 space-y-8 mt-12 transition-all duration-1000 hidden">
+        
+        <!-- Top-right corner gold line-art flower -->
+        <svg class="absolute top-0 right-0 w-32 h-32 text-gold/10 pointer-events-none" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="0.8">
+            <path d="M120,0 C100,15 80,10 70,30 C60,50 70,70 85,65 C100,60 105,45 95,35 M120,0 C105,25 105,50 85,65 C70,75 60,95 70,110 M120,0 C110,10 105,25 90,28 C80,30 75,45 85,55" />
+            <path d="M120,0 C115,10 110,22 100,28 M95,35 C88,28 78,35 80,45" />
+            <circle cx="85" cy="45" r="4" fill="currentColor" />
+            <path d="M120,0 Q90,30 40,30 Q20,30 15,50" />
+            <path d="M40,30 Q50,15 65,18" />
+            <path d="M80,65 Q60,85 65,110" />
+        </svg>
+        <!-- Bottom-left corner gold line-art flower -->
+        <svg class="absolute bottom-0 left-0 w-32 h-32 text-gold/10 pointer-events-none transform rotate-180" viewBox="0 0 120 120" fill="none" stroke="currentColor" stroke-width="0.8">
+            <path d="M120,0 C100,15 80,10 70,30 C60,50 70,70 85,65 C100,60 105,45 95,35 M120,0 C105,25 105,50 85,65 C70,75 60,95 70,110 M120,0 C110,10 105,25 90,28 C80,30 75,45 85,55" />
+            <path d="M120,0 C115,10 110,22 100,28 M95,35 C88,28 78,35 80,45" />
+            <circle cx="85" cy="45" r="4" fill="currentColor" />
+            <path d="M120,0 Q90,30 40,30 Q20,30 15,50" />
+            <path d="M40,30 Q50,15 65,18" />
+            <path d="M80,65 Q60,85 65,110" />
+        </svg>
+
+        <div class="text-center space-y-4">
+          <h3 class="font-hand text-5xl text-gold">Dear Sandhya,</h3>
+        </div>
+        <div class="font-display text-whisper/90 text-base md:text-lg leading-relaxed space-y-6 text-center font-light">
+          <p>
+            On this very special day, I wanted to write something that stays close to your heart. Coding this surprise
+            for you is my way of saying how deeply you are loved, how valued you are, and how much colors you add to my
+            existence.
+          </p>
+          <p>
+            You are my anchor, my laughing partner, my quiet sanctuary, and my greatest cheerleader. Watching your
+            beauty, grace, and kindness illuminate our lives is a gift I cherish every day.
+          </p>
+          <p>
+            May this year bring you all the warmth, sparkling magic, and limitless joy that you bring to those around
+            you.
+          </p>
+          <p class="font-hand text-4xl text-rose mt-8">I Love You, Forever.</p>
+        </div>
+        <div class="text-right italic font-hand text-2xl text-gold pt-4 border-t border-gold/15">
+          — Your Husband ❤️
+        </div>
+      </div>
+
+      <!-- STAGE 5: POLAROID CAROUSEL OF MOMENTS -->
+      <div id="polaroid-section" class="hidden w-full max-w-3xl mt-24 space-y-12">
+        <div class="text-center space-y-2">
+          <h3 class="font-display text-xs uppercase tracking-widest text-gold">Little Things That Make You, You</h3>
+          <p class="font-body text-rose/70 text-sm">Click each Polaroid frame to reveal a cute note</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Polaroid 1 -->
+          <div
+            class="polaroid-card glass bg-[#fffbf4] border border-gold/15 shadow-xl hover:-rotate-3 transition-transform duration-350 cursor-pointer p-4 pb-8 flex flex-col items-center">
+            <div class="relative w-full aspect-square overflow-hidden bg-wine rounded border border-gold/10">
+              <!-- High quality background mockup/image representing kindness -->
+              <div class="absolute inset-0 bg-[#4a1830] opacity-40 flex items-center justify-center">
+                <span class="text-gold text-5xl">❤️</span>
+              </div>
+              <div
+                class="custom-card-inside absolute inset-0 flex flex-col items-center justify-center p-4 text-center select-none text-wine font-hand text-lg opacity-0 transition-opacity bg-cream duration-300">
+                "The warmth you spread to everyone you meet makes me fall in love with you every single day."
+              </div>
+            </div>
+            <span class="font-hand text-2xl text-wine mt-4 font-bold select-none">Your Kindness</span>
+          </div>
+
+          <!-- Polaroid 2 -->
+          <div
+            class="polaroid-card glass bg-[#fffbf4] border border-gold/15 shadow-xl hover:rotate-3 transition-transform duration-350 cursor-pointer p-4 pb-8 flex flex-col items-center">
+            <div class="relative w-full aspect-square overflow-hidden bg-wine rounded border border-gold/10">
+              <div class="absolute inset-0 bg-[#4a1830] opacity-40 flex items-center justify-center">
+                <span class="text-gold text-5xl">✨</span>
+              </div>
+              <div
+                class="custom-card-inside absolute inset-0 flex flex-col items-center justify-center p-4 text-center select-none text-wine font-hand text-lg opacity-0 transition-opacity bg-cream duration-300">
+                "Even in the toughest storms, your strength keeps us sailing forward together."
+              </div>
+            </div>
+            <span class="font-hand text-2xl text-wine mt-4 font-bold select-none">Your Strength</span>
+          </div>
+
+          <!-- Polaroid 3 -->
+          <div
+            class="polaroid-card glass bg-[#fffbf4] border border-gold/15 shadow-xl hover:-rotate-1 transition-transform duration-350 cursor-pointer p-4 pb-8 flex flex-col items-center">
+            <div class="relative w-full aspect-square overflow-hidden bg-wine rounded border border-gold/10">
+              <div class="absolute inset-0 bg-[#4a1830] opacity-40 flex items-center justify-center">
+                <span class="text-gold text-5xl">😊</span>
+              </div>
+              <div
+                class="custom-card-inside absolute inset-0 flex flex-col items-center justify-center p-4 text-center select-none text-wine font-hand text-lg opacity-0 transition-opacity bg-cream duration-300">
+                "Your sweet giggles and laughter are the most joyous music in the entire universe."
+              </div>
+            </div>
+            <span class="font-hand text-2xl text-wine mt-4 font-bold select-none">Your Giggles</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer wishes -->
+      <div class="w-full text-center mt-32 border-t border-gold/10 pt-8 opacity-40 hover:opacity-85 transition-opacity">
+        <p class="text-xs font-body text-cream">With Love, Always & Forever. Happy Birthday, Sandhya.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Script loading -->
+  <script src="app.js"></script>
+</body>
+
+</html>
