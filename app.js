@@ -176,7 +176,7 @@ cakeMusic.volume = 0.6;
     //     }
     // }
 
-    audioBtn.addEventListener("click", toggleSound);
+    // audioBtn.addEventListener("click", toggleSound);
 
     // Floating Romantic Petals & Flowers Rain
     const particlesContainer = document.body;
