@@ -22,9 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const slideProgress = document.getElementById("slide-progress-bar");
     let soundEnabled = false;
 
-   const bgMusic = new Audio(
-    "jersey-movie-adhento-gaani-vunnapaatuga-song-whatsapp-status-lyrics-jersey-nani-anirudh363312721.mp3"
-);
+const bgMusic = new Audio("adhento.mp3");
     bgMusic.loop = true;
     bgMusic.volume = 0.5;
     // Audio Context Setup for Synthesizer (Zero-dependency fallback music)
