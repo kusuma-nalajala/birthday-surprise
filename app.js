@@ -336,14 +336,20 @@ openGateBtn.addEventListener("click", () => {
     document.getElementById("skip-slideshow").addEventListener("click", transitionToCake);
 
     function transitionToCake() {
-        stopSlideshow();
-        videoScreen.classList.add("fade-out");
-        setTimeout(() => {
-            videoScreen.classList.add("hidden");
-            wishScreen.classList.remove("hidden");
-            wishScreen.classList.add("fade-in");
-            // Highlight the cake stage
-            cakeScreen.classList.remove("hidden");
+    stopSlideshow();
+
+    videoScreen.classList.add("fade-out");
+
+    setTimeout(() => {
+        videoScreen.classList.add("hidden");
+        wishScreen.classList.remove("hidden");
+        wishScreen.classList.add("fade-in");
+        cakeScreen.classList.remove("hidden");
+
+        triggerScrollReveal();
+
+    }, 800);
+}
            
 
 
