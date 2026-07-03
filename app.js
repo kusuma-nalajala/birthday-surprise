@@ -12,7 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const smokeContainer = document.getElementById("smoke-container");
     const letterPaper = document.getElementById("letter-paper");
     const openLetterBtn = document.getElementById("open-letter-btn");
-    const returnLettersBtn = document.getElementById("close-letter-btn");
+    // const returnLettersBtn = document.getElementById("close-letter-btn");
+    const testAudioInput = document.getElementById("test-audio-opt");
+const slideTrack = document.getElementById("slide-track");
     const polaroids = document.querySelectorAll(".polaroid-card");
     const slideTrack = document.getElementById("slide-track");
     const slides = document.querySelectorAll(".slide");
@@ -419,13 +421,31 @@ const bgMusic = new Audio("adhento.mp3");
     window.addEventListener("scroll", triggerScrollReveal);
 
     // Letter folding actions
+    // openLetterBtn.addEventListener("click", () => {
+    //     letterPaper.classList.add("open");
+    //     openLetterBtn.classList.add("hidden");
+    //     document.getElementById("polaroid-section").classList.remove("hidden");
+    //     document.getElementById("polaroid-section").classList.add("fade-in");
+    //     setTimeout(triggerScrollReveal, 200);
+    // });
     openLetterBtn.addEventListener("click", () => {
-        letterPaper.classList.add("open");
-        openLetterBtn.classList.add("hidden");
-        document.getElementById("polaroid-section").classList.remove("hidden");
-        document.getElementById("polaroid-section").classList.add("fade-in");
-        setTimeout(triggerScrollReveal, 200);
-    });
+
+    // hidden remove cheyyali
+    letterPaper.classList.remove("hidden");
+
+    // animation class add cheyyali
+    letterPaper.classList.add("open", "fade-in");
+
+    // button hide cheyyali
+    openLetterBtn.parentElement.classList.add("hidden");
+
+    // polaroids show cheyyali
+    const polaroidSection = document.getElementById("polaroid-section");
+    polaroidSection.classList.remove("hidden");
+    polaroidSection.classList.add("fade-in");
+
+    setTimeout(triggerScrollReveal, 200);
+});
 
     // Custom interactive Polaroids click
     polaroids.forEach(p => {
