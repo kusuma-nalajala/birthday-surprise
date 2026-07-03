@@ -347,7 +347,7 @@ const bgMusic = new Audio("adhento.mp3");
         smokeContainer.classList.add("blown");
 
         // Trigger sound effect (Synthesizer sweep for victory/joy)
-        if (soundEnabled && audioCtx) {
+        if (soundEnabled && typeof audioCtx !== "undefined" && audioCtx) {
             const now = audioCtx.currentTime;
             const osc = audioCtx.createOscillator();
             const gainNode = audioCtx.createGain();
