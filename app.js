@@ -24,15 +24,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const slideProgress = document.getElementById("slide-progress-bar");
     let soundEnabled = false;
 
-// Intro background music
-const introMusic = new Audio("audio.mp3");
-introMusic.loop = true;
-introMusic.volume = 0.4;
 
-// Cake song
-const cakeMusic = new Audio("adhento.mp3");
-cakeMusic.loop = true;
-cakeMusic.volume = 0.6;
+    // Background music (entire surprise)
+const bgMusic = new Audio("audio.mp3"); // mee song file
+bgMusic.loop = true;
+bgMusic.volume = 0.5;
     // bgMusic.loop = true;
     // bgMusic.volume = 0.5;
     // Audio Context Setup for Synthesizer (Zero-dependency fallback music)
@@ -226,20 +222,28 @@ cakeMusic.volume = 0.6;
     setInterval(createPetals, 320);
 
     // Intro Screen -> Cinematic Slideshow Transition
-    openGateBtn.addEventListener("click", () => {
+   // Intro Screen -> Cinematic Slideshow Transition
+openGateBtn.addEventListener("click", () => {
+
     gateScreen.classList.add("fade-out");
 
     setTimeout(() => {
+
         gateScreen.classList.add("hidden");
         videoScreen.classList.remove("hidden");
         videoScreen.classList.add("fade-in");
 
-        introMusic.play().catch(console.error);
+        // Play background music
+        bgMusic.play().catch((err) => {
+            console.log("Music play failed:", err);
+        });
 
+        // Start slideshow
         startSlideshow();
-    }, 800);
-});
 
+    }, 800);
+
+});
     // Cinematic Slideshow Logic
     let currentSlide = 0;
     let slideInterval = null;
@@ -340,15 +344,8 @@ cakeMusic.volume = 0.6;
             wishScreen.classList.add("fade-in");
             // Highlight the cake stage
             cakeScreen.classList.remove("hidden");
-            introMusic.pause();
-introMusic.currentTime = 0;
+           
 
-cakeMusic.play()
-    .then(() => console.log("Adhento playing"))
-    .catch(err => console.log(err));
-            triggerScrollReveal();
-        }, 800);
-    }
 
     // Confetti effect on candle blow out
     let candleBlown = false;
