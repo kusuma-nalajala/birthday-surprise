@@ -24,7 +24,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const slideProgress = document.getElementById("slide-progress-bar");
     let soundEnabled = false;
 
-const bgMusic = new Audio("adhento.mp3");
+// Intro background music
+const introMusic = new Audio("intro.mp3");
+introMusic.loop = true;
+introMusic.volume = 0.4;
+
+// Cake song
+const cakeMusic = new Audio("adhento.mp3");
+cakeMusic.loop = true;
+cakeMusic.volume = 0.6;
     bgMusic.loop = true;
     bgMusic.volume = 0.5;
     // Audio Context Setup for Synthesizer (Zero-dependency fallback music)
@@ -108,7 +116,7 @@ const bgMusic = new Audio("adhento.mp3");
         if (soundEnabled) {
 
             // bgMusic.play();
-            bgMusic.play()
+          introMusic.play();
     .then(() => console.log("Music playing"))
     .catch(err => console.log(err));
 
@@ -127,7 +135,9 @@ const bgMusic = new Audio("adhento.mp3");
 
         } else {
 
-            bgMusic.pause();
+            // bgMusic.pause();
+            introMusic.pause();
+cakeMusic.pause();
 
             audioBtn.classList.add("muted");
 
@@ -328,6 +338,12 @@ const bgMusic = new Audio("adhento.mp3");
             wishScreen.classList.add("fade-in");
             // Highlight the cake stage
             cakeScreen.classList.remove("hidden");
+            introMusic.pause();
+introMusic.currentTime = 0;
+
+cakeMusic.play()
+    .then(() => console.log("Adhento playing"))
+    .catch(err => console.log(err));
             triggerScrollReveal();
         }, 800);
     }
