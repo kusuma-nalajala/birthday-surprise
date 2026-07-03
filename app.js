@@ -33,8 +33,8 @@ introMusic.volume = 0.4;
 const cakeMusic = new Audio("adhento.mp3");
 cakeMusic.loop = true;
 cakeMusic.volume = 0.6;
-    bgMusic.loop = true;
-    bgMusic.volume = 0.5;
+    // bgMusic.loop = true;
+    // bgMusic.volume = 0.5;
     // Audio Context Setup for Synthesizer (Zero-dependency fallback music)
     // let audioCtx = null;
     // let synthInterval = null;
@@ -116,7 +116,7 @@ cakeMusic.volume = 0.6;
         if (soundEnabled) {
 
             // bgMusic.play();
-          introMusic.play();
+          introMusic.play()
     .then(() => console.log("Music playing"))
     .catch(err => console.log(err));
 
