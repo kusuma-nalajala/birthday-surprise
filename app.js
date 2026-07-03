@@ -20,104 +20,147 @@ document.addEventListener("DOMContentLoaded", () => {
     const nextBtn = document.getElementById("next-slide");
     const playPauseBtn = document.getElementById("play-pause-slide");
     const slideProgress = document.getElementById("slide-progress-bar");
-
-    // Audio Context Setup for Synthesizer (Zero-dependency fallback music)
-    let audioCtx = null;
-    let synthInterval = null;
     let soundEnabled = false;
 
-    // Beautiful synthesized romantic melody
-    // Sweet, ambient, soft chime notes (frequency, duration, delay)
-    const melody = [
-        { note: 261.63, dur: 0.8, delay: 0 },    // C4
-        { note: 329.63, dur: 0.8, delay: 0.8 },  // E4
-        { note: 392.00, dur: 0.8, delay: 1.6 },  // G4
-        { note: 493.88, dur: 1.2, delay: 2.4 },  // B4
-        { note: 440.00, dur: 0.8, delay: 3.6 },  // A4
-        { note: 392.00, dur: 0.8, delay: 4.4 },  // G4
-        { note: 349.23, dur: 0.8, delay: 5.2 },  // F4
-        { note: 329.63, dur: 1.2, delay: 6.0 },  // E4
+    const bgMusic = new Audio("assets/adhento.mp3");
 
-        { note: 293.66, dur: 0.8, delay: 7.2 },  // D4
-        { note: 349.23, dur: 0.8, delay: 8.0 },  // F4
-        { note: 440.00, dur: 0.8, delay: 8.8 },  // A4
-        { note: 523.25, dur: 1.2, delay: 9.6 },  // C5
-        { note: 493.88, dur: 0.8, delay: 10.8 }, // B4
-        { note: 392.00, dur: 0.8, delay: 11.6 }, // G4
-        { note: 329.63, dur: 0.8, delay: 12.4 }, // E4
-        { note: 293.66, dur: 1.2, delay: 13.2 }  // D4
-    ];
+    bgMusic.loop = true;
+    bgMusic.volume = 0.5;
+    // Audio Context Setup for Synthesizer (Zero-dependency fallback music)
+    // let audioCtx = null;
+    // let synthInterval = null;
+    // let soundEnabled = false;
 
-    function startSynthMelody() {
-        if (!audioCtx) {
-            audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        }
-        if (audioCtx.state === 'suspended') {
-            audioCtx.resume();
-        }
+    // // Beautiful synthesized romantic melody
+    // // Sweet, ambient, soft chime notes (frequency, duration, delay)
+    // const melody = [
+    //     { note: 261.63, dur: 0.8, delay: 0 },    // C4
+    //     { note: 329.63, dur: 0.8, delay: 0.8 },  // E4
+    //     { note: 392.00, dur: 0.8, delay: 1.6 },  // G4
+    //     { note: 493.88, dur: 1.2, delay: 2.4 },  // B4
+    //     { note: 440.00, dur: 0.8, delay: 3.6 },  // A4
+    //     { note: 392.00, dur: 0.8, delay: 4.4 },  // G4
+    //     { note: 349.23, dur: 0.8, delay: 5.2 },  // F4
+    //     { note: 329.63, dur: 1.2, delay: 6.0 },  // E4
 
-        let melodyDuration = 14.4; // seconds total loop
-        function playChime(freq, onset, duration) {
-            const osc = audioCtx.createOscillator();
-            const gainNode = audioCtx.createGain();
+    //     { note: 293.66, dur: 0.8, delay: 7.2 },  // D4
+    //     { note: 349.23, dur: 0.8, delay: 8.0 },  // F4
+    //     { note: 440.00, dur: 0.8, delay: 8.8 },  // A4
+    //     { note: 523.25, dur: 1.2, delay: 9.6 },  // C5
+    //     { note: 493.88, dur: 0.8, delay: 10.8 }, // B4
+    //     { note: 392.00, dur: 0.8, delay: 11.6 }, // G4
+    //     { note: 329.63, dur: 0.8, delay: 12.4 }, // E4
+    //     { note: 293.66, dur: 1.2, delay: 13.2 }  // D4
+    // ];
 
-            osc.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
+    // function startSynthMelody() {
+    //     if (!audioCtx) {
+    //         audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    //     }
+    //     if (audioCtx.state === 'suspended') {
+    //         audioCtx.resume();
+    //     }
 
-            osc.frequency.setValueAtTime(freq, onset);
-            osc.type = 'sine'; // pure, sweet chime sound
+    //     let melodyDuration = 14.4; // seconds total loop
+    //     function playChime(freq, onset, duration) {
+    //         const osc = audioCtx.createOscillator();
+    //         const gainNode = audioCtx.createGain();
 
-            gainNode.gain.setValueAtTime(0, onset);
-            gainNode.gain.linearRampToValueAtTime(0.12, onset + 0.05); // low volume, ambient
-            gainNode.gain.exponentialRampToValueAtTime(0.001, onset + duration);
+    //         osc.connect(gainNode);
+    //         gainNode.connect(audioCtx.destination);
 
-            osc.start(onset);
-            osc.stop(onset + duration + 0.1);
-        }
+    //         osc.frequency.setValueAtTime(freq, onset);
+    //         osc.type = 'sine'; // pure, sweet chime sound
 
-        function playSequence() {
-            const now = audioCtx.currentTime;
-            melody.forEach(item => {
-                playChime(item.note, now + item.delay, item.dur);
-            });
-        }
+    //         gainNode.gain.setValueAtTime(0, onset);
+    //         gainNode.gain.linearRampToValueAtTime(0.12, onset + 0.05); // low volume, ambient
+    //         gainNode.gain.exponentialRampToValueAtTime(0.001, onset + duration);
 
-        playSequence();
-        synthInterval = setInterval(playSequence, melodyDuration * 1000);
-    }
+    //         osc.start(onset);
+    //         osc.stop(onset + duration + 0.1);
+    //     }
 
-    function stopSynthMelody() {
-        if (synthInterval) {
-            clearInterval(synthInterval);
-            synthInterval = null;
-        }
-        if (audioCtx) {
-            audioCtx.suspend();
-        }
-    }
+    //     function playSequence() {
+    //         const now = audioCtx.currentTime;
+    //         melody.forEach(item => {
+    //             playChime(item.note, now + item.delay, item.dur);
+    //         });
+    //     }
 
+    //     playSequence();
+    //     synthInterval = setInterval(playSequence, melodyDuration * 1000);
+    // }
+
+    // function stopSynthMelody() {
+    //     if (synthInterval) {
+    //         clearInterval(synthInterval);
+    //         synthInterval = null;
+    //     }
+    //     if (audioCtx) {
+    //         audioCtx.suspend();
+    //     }
+    // }
     function toggleSound() {
+
         soundEnabled = !soundEnabled;
+
         if (soundEnabled) {
+
+            bgMusic.play();
+
             audioBtn.classList.remove("muted");
+
             audioBtn.innerHTML = `
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-gold">
-                    <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.063.922-2.063 2.063v4.875c0 1.141.922 2.062 2.063 2.062h1.932l4.5 4.5c.944.945 2.56.276 2.56-1.06V4.06zM17.78 9.22a.75.75 0 10-1.06 1.06L18.44 12l-1.72 1.72a.75.75 0 001.06 1.06l1.72-1.72 1.72 1.72a.75.75 0 101.06-1.06L20.56 12l1.72-1.72a.75.75 0 00-1.06-1.06l-1.72 1.72-1.72-1.72z" />
-                </svg>
-            `; // Note: using muted icon for click-to-mute, show play state (sound is outputting, next click silences it)
+            <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-6 h-6 text-gold">
+                <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.063.922-2.063 2.063v4.875c0 1.141.922 2.062 2.063 2.062h1.932l4.5 4.5c.944.945 2.56.276 2.56-1.06V4.06z"/>
+            </svg>
+        `;
+
             audioBtn.style.animation = "soft-pulse 2s infinite";
-            startSynthMelody();
+
         } else {
+
+            bgMusic.pause();
+
             audioBtn.classList.add("muted");
+
             audioBtn.innerHTML = `
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-cream opacity-50">
-                    <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.063.922-2.063 2.063v4.875c0 1.141.922 2.062 2.063 2.062h1.932l4.5 4.5c.944.945 2.56.276 2.56-1.06V4.06z" />
-                </svg>
-            `;
+            <svg xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="w-6 h-6 text-cream opacity-50">
+                <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.063.922-2.063 2.063v4.875c0 1.141.922 2.062 2.063 2.062h1.932l4.5 4.5c.944.945 2.56.276 2.56-1.06V4.06z"/>
+            </svg>
+        `;
+
             audioBtn.style.animation = "none";
-            stopSynthMelody();
         }
     }
+    // function toggleSound() {
+    //     soundEnabled = !soundEnabled;
+    //     if (soundEnabled) {
+    //         audioBtn.classList.remove("muted");
+    //         audioBtn.innerHTML = `
+    //             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-gold">
+    //                 <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.063.922-2.063 2.063v4.875c0 1.141.922 2.062 2.063 2.062h1.932l4.5 4.5c.944.945 2.56.276 2.56-1.06V4.06zM17.78 9.22a.75.75 0 10-1.06 1.06L18.44 12l-1.72 1.72a.75.75 0 001.06 1.06l1.72-1.72 1.72 1.72a.75.75 0 101.06-1.06L20.56 12l1.72-1.72a.75.75 0 00-1.06-1.06l-1.72 1.72-1.72-1.72z" />
+    //             </svg>
+    //         `; // Note: using muted icon for click-to-mute, show play state (sound is outputting, next click silences it)
+    //         audioBtn.style.animation = "soft-pulse 2s infinite";
+    //         startSynthMelody();
+    //     } else {
+    //         audioBtn.classList.add("muted");
+    //         audioBtn.innerHTML = `
+    //             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6 text-cream opacity-50">
+    //                 <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.063.922-2.063 2.063v4.875c0 1.141.922 2.062 2.063 2.062h1.932l4.5 4.5c.944.945 2.56.276 2.56-1.06V4.06z" />
+    //             </svg>
+    //         `;
+    //         audioBtn.style.animation = "none";
+    //         stopSynthMelody();
+    //     }
+    // }
 
     audioBtn.addEventListener("click", toggleSound);
 
