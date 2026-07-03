@@ -105,7 +105,10 @@ const bgMusic = new Audio("adhento.mp3");
 
         if (soundEnabled) {
 
-            bgMusic.play();
+            // bgMusic.play();
+            bgMusic.play()
+    .then(() => console.log("Music playing"))
+    .catch(err => console.log(err));
 
             audioBtn.classList.remove("muted");
 
