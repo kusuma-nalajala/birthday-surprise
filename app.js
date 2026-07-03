@@ -109,50 +109,50 @@ cakeMusic.volume = 0.6;
     //         audioCtx.suspend();
     //     }
     // }
-    function toggleSound() {
+//     function toggleSound() {
 
-        soundEnabled = !soundEnabled;
+//         soundEnabled = !soundEnabled;
 
-        if (soundEnabled) {
+//         if (soundEnabled) {
 
-            // bgMusic.play();
-          introMusic.play()
-    .then(() => console.log("Music playing"))
-    .catch(err => console.log(err));
+//             // bgMusic.play();
+//           introMusic.play()
+//     .then(() => console.log("Music playing"))
+//     .catch(err => console.log(err));
 
-            audioBtn.classList.remove("muted");
+//             audioBtn.classList.remove("muted");
 
-            audioBtn.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="w-6 h-6 text-gold">
-                <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.063.922-2.063 2.063v4.875c0 1.141.922 2.062 2.063 2.062h1.932l4.5 4.5c.944.945 2.56.276 2.56-1.06V4.06z"/>
-            </svg>
-        `;
+//             audioBtn.innerHTML = `
+//             <svg xmlns="http://www.w3.org/2000/svg"
+//                 viewBox="0 0 24 24"
+//                 fill="currentColor"
+//                 class="w-6 h-6 text-gold">
+//                 <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.063.922-2.063 2.063v4.875c0 1.141.922 2.062 2.063 2.062h1.932l4.5 4.5c.944.945 2.56.276 2.56-1.06V4.06z"/>
+//             </svg>
+//         `;
 
-            audioBtn.style.animation = "soft-pulse 2s infinite";
+//             audioBtn.style.animation = "soft-pulse 2s infinite";
 
-        } else {
+//         } else {
 
-            // bgMusic.pause();
-            introMusic.pause();
-cakeMusic.pause();
+//             // bgMusic.pause();
+//             introMusic.pause();
+// cakeMusic.pause();
 
-            audioBtn.classList.add("muted");
+//             audioBtn.classList.add("muted");
 
-            audioBtn.innerHTML = `
-            <svg xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="currentColor"
-                class="w-6 h-6 text-cream opacity-50">
-                <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.063.922-2.063 2.063v4.875c0 1.141.922 2.062 2.063 2.062h1.932l4.5 4.5c.944.945 2.56.276 2.56-1.06V4.06z"/>
-            </svg>
-        `;
+//             audioBtn.innerHTML = `
+//             <svg xmlns="http://www.w3.org/2000/svg"
+//                 viewBox="0 0 24 24"
+//                 fill="currentColor"
+//                 class="w-6 h-6 text-cream opacity-50">
+//                 <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.063.922-2.063 2.063v4.875c0 1.141.922 2.062 2.063 2.062h1.932l4.5 4.5c.944.945 2.56.276 2.56-1.06V4.06z"/>
+//             </svg>
+//         `;
 
-            audioBtn.style.animation = "none";
-        }
-    }
+//             audioBtn.style.animation = "none";
+//         }
+//     }
     // function toggleSound() {
     //     soundEnabled = !soundEnabled;
     //     if (soundEnabled) {
@@ -227,16 +227,18 @@ cakeMusic.pause();
 
     // Intro Screen -> Cinematic Slideshow Transition
     openGateBtn.addEventListener("click", () => {
-        gateScreen.classList.add("fade-out");
-        setTimeout(() => {
-            gateScreen.classList.add("hidden");
-            videoScreen.classList.remove("hidden");
-            videoScreen.classList.add("fade-in");
-            // Auto start sound on click to engage user
-            toggleSound();
-            startSlideshow();
-        }, 800);
-    });
+    gateScreen.classList.add("fade-out");
+
+    setTimeout(() => {
+        gateScreen.classList.add("hidden");
+        videoScreen.classList.remove("hidden");
+        videoScreen.classList.add("fade-in");
+
+        introMusic.play().catch(console.error);
+
+        startSlideshow();
+    }, 800);
+});
 
     // Cinematic Slideshow Logic
     let currentSlide = 0;
