@@ -1,7 +1,7 @@
 // For Sandhya - Birthday Surprise Controller script
 document.addEventListener("DOMContentLoaded", () => {
     // UI Elements
-    const audioBtn = document.getElementById("audio-toggle");
+    // const audioBtn = document.getElementById("audio-toggle");
     const testAudioInput = document.getElementById("test-audio-opt");
     const gateScreen = document.getElementById("gate-screen");
     const openGateBtn = document.getElementById("open-gate-btn");
