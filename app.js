@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let soundEnabled = false;
 
 // Intro background music
-const introMusic = new Audio("intro.mp3");
+const introMusic = new Audio("audio.mp3");
 introMusic.loop = true;
 introMusic.volume = 0.4;
 
