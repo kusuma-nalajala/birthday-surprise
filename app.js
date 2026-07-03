@@ -2,7 +2,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     // UI Elements
     // const audioBtn = document.getElementById("audio-toggle");
-    const testAudioInput = document.getElementById("test-audio-opt");
+    // const testAudioInput = document.getElementById("test-audio-opt");
     const gateScreen = document.getElementById("gate-screen");
     const openGateBtn = document.getElementById("open-gate-btn");
     const videoScreen = document.getElementById("video-screen");
